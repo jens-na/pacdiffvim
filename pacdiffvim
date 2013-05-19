@@ -1,7 +1,6 @@
 #!/bin/bash
-
-# pacdiffvim, a small shell script which updates .pacnew files in vim
-# in an very efficient way.
+#
+# pacdiffvim, a pacnew file updater for vim enthsiasts.
 # 
 # Copyright (C) 2013, Jens Nazarenus <jems@0x6a.de>
 #

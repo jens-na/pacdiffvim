@@ -1,6 +1,7 @@
 #!/bin/bash
-#
-# pacdiffvim, a pacnew file updater for vim enthusiasts 
+
+# pacdiffvim, a small shell script which updates .pacnew files in vim
+# in an very efficient way.
 # 
 # Copyright (C) 2013, Jens Nazarenus <jems@0x6a.de>
 #
@@ -23,13 +24,6 @@ declare -r tmpfile='/tmp/pacdiffvim.vim'
 
 vimprog=${VIMPROG:-vim}
 diffsearchpath=/etc
-
-trap clean_up SIGINT SIGTERM EXIT
-
-# cleans up the temporarily created files
-clean_up() {
-	rm -f $tmpfile
-}
 
 # returns the .pacnew files with find. The script uses $DIFFSEARCHPATH
 # for the determination of the .pacnew files
@@ -136,6 +130,14 @@ if [ $# -gt 0 ]; then
 	esac
 			
 fi
+
+which "$vimprog" >/dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+        echo "Could not find $vimprog in PATH."
+	exit 1
+fi
+
 
 files=$(get_files)
 set -- $files

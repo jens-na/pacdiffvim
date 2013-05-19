@@ -4,6 +4,9 @@ Overview
 and opens a tab for each configuration file comparision (diff) in vim. Furthermore the script defines a few 
 vim functions to operate with a .pacnew diff.
 
+###Audience
+Arch Linux user or user of Linux distributions which uses <tt>pacman</tt> as  the systems package manager.
+
 ###Dependencies
 - Bash 4.x
 - Vim 7.x
@@ -28,7 +31,7 @@ will exit with return code 0.
 **Environment variables**<br/>
 If <tt>$VIMPROG</tt> is specified, the script uses this value to start vim. The default value is 
 <tt>vim</tt>. For example if you like to use <tt>gvim</tt> to compare the files you can set <tt>VIMPROG</tt>
-to <tt>gvim</tt>. Example: <tt>VIMPROG=gvim pacdiffvim</tt>
+to <tt>gvim</tt>. Example: <tt># VIMPROG=gvim pacdiffvim</tt>
 
 ###Runtime
 <tt>pacdiffvim</tt> starts vim with a few vim commands to deal with the .pacnew diff. 
@@ -36,7 +39,7 @@ to <tt>gvim</tt>. Example: <tt>VIMPROG=gvim pacdiffvim</tt>
 * <tt>:PacNextDiff</tt>    - the command opens the next available .pacnew diff (if there is any)
 * <tt>:PacOK</tt>          - if you have finished the diff between the .pacnew file and the configuration file
                              you should invoke this command. It will delete the corresponding .pacnew file and
-                             closes the current diff.
+                             closes the current diff. This command uses <tt>rm -f /etc/x.pacnew</tt> to delete the file.
 * <tt>:PacExit</tt>        - closes all the vim buffers and vim itsself without saving, deleting, modifying anything.
 
 License and Copyright

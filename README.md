@@ -25,13 +25,10 @@ will exit with return code 0.
 * <tt>-V, --version</tt> - Shows the version and copyright info for <tt>pacvimdiff</tt>.
 * <tt>-h, --help</tt>    - Shows the help for the script and exits.
 
-Environment variables*
+**Environment variables**<br/>
 If <tt>$VIMPROG</tt> is specified, the script uses this value to start vim. The default value is 
-<tt>vim</tt>. For example if you like to use <tt>gvim</tt> to compare the files you can set VIMPROG
-to <tt>gvim</tt>.
-
-Example:<br/>
-<tt>VIMPROG=gvim pacdiffvim</tt>
+<tt>vim</tt>. For example if you like to use <tt>gvim</tt> to compare the files you can set <tt>VIMPROG</tt>
+to <tt>gvim</tt>. Example: <tt>VIMPROG=gvim pacdiffvim</tt>
 
 ###Runtime
 <tt>pacdiffvim</tt> starts vim with a few vim commands to deal with the .pacnew diff. 

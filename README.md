@@ -34,7 +34,10 @@ will exit with return code 0.
 **Environment variables**<br/>
 If <tt>$VIMPROG</tt> is specified, the script uses this value to start vim. The default value is 
 <tt>vim</tt>. For example if you like to use <tt>gvim</tt> to compare the files you can set <tt>VIMPROG</tt>
-to <tt>gvim</tt>. Example: <tt># VIMPROG=gvim pacdiffvim</tt>
+to <tt>gvim</tt>. 
+
+Example:<br/>
+<tt># VIMPROG=gvim pacdiffvim</tt>
 
 ###Runtime
 <tt>pacdiffvim</tt> starts Vim with the special Vim command <tt>:OK</tt> to deal with the .pacnew diff.

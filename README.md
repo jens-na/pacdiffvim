@@ -28,7 +28,7 @@ will exit with return code 0.
 
 * <tt>-r, --root</tt>    - You can update .pacnew files in another directory if you specify an alternative root 
                            path with <tt>-r</tt> or <tt>--root</tt>. The default directory is <tt>/etc</tt>.
-* <tt>-V, --version</tt> - Shows the version and copyright info for <tt>pacvimdiff</tt>.
+* <tt>-V, --version</tt> - Shows the version and copyright info for <tt>pacdiffvim</tt>.
 * <tt>-h, --help</tt>    - Shows the help for the script and exits.
 
 **Environment variables**<br/>

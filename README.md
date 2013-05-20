@@ -5,7 +5,7 @@ and opens a tab for each diff in Vim. Furthermore the script defines a special
 Vim function to deal with the diff.
 
 ###Audience
-Arch Linux user or user of Linux distributions which uses pacman as  the systems package manager.
+Users of Linux distributions which uses [pacman](https://wiki.archlinux.org/index.php/Pacman) as the systems package manager (e.g. [Arch Linux](https://www.archlinux.org/))
 
 ###Dependencies
 - Bash 4.x

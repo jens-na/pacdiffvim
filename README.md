@@ -1,6 +1,6 @@
 Overview
 ==========
-<tt>pacdiffvim</tt> is a .pacnew file updater for vim enthusiasts. The shell script locates all .pacnew files
+**pacdiffvim** is a .pacnew file updater for vim enthusiasts. The shell script locates all .pacnew files
 and opens a tab for each diff in Vim. Furthermore the script defines a special
 Vim function to deal with the diff.
 

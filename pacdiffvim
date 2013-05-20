@@ -18,7 +18,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 declare -r myname='pacdiffvim'
-declare -r myversion='1.0.0'
+declare -r myversion='1.1.0'
 declare -r tmpfile='/tmp/pacdiffvim.vim'
 
 vimprog=${VIMPROG:-vim}
@@ -65,20 +65,9 @@ if exists('g:loaded_pacdiffvim') || &cp || v:version < 700
 endif
 let g:loaded_pacdiffvim = 1
 
-" vim function to show the next available diff. (if any)
-function! PacNext()
-	tabnext	
-endfunction
-
-function! PacOverwriteWithPacnew()
-	wincmd h
-	%diffput
-	call PacOK()
-endfunction
-
 " vim function to save the file and delete the .pacnew file
 " afterwards. 
-function! PacOK()
+function! OK()
 	wincmd l
 	write
 	let pacnew_file = expand('%:p') . ".pacnew"
@@ -91,21 +80,12 @@ function! PacOK()
 	try
 		tabclose
 	catch /E784:/
-		call PacExit()
+		quitall!	
 	endtry
 endfunction
 
-" vim function to end everything immediatly without saving
-" anything.
-function! PacExit()
-	qall!
-endfunction
-
 " commands
-command PacNext :call PacNext()
-command PacOK :call PacOK()
-command PacOverwriteWithPacnew :call PacOverwriteWithPacnew()
-command PacExit :call PacExit()
+command OK :call OK()
 EOF
 
 if [ $# -gt 0 ]; then

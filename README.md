@@ -16,6 +16,9 @@ Arch Linux user or user of Linux distributions which uses <tt>pacman</tt> as  th
 - Put <tt>pacdiffvim</tt> to <tt>/usr/local/bin</tt>
 - <tt>chmod +x /usr/local/bin/pacdiffvim</tt>
 
+###Screenshot
+![vim-example](images/example-vim.png)
+
 Usage
 ==========
 ###Command line options

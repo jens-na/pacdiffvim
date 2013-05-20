@@ -5,7 +5,7 @@ and opens a tab for each diff in Vim. Furthermore the script defines a special
 Vim function to deal with the diff.
 
 ###Audience
-Arch Linux user or user of Linux distributions which uses <tt>pacman</tt> as  the systems package manager.
+Arch Linux user or user of Linux distributions which uses pacman as  the systems package manager.
 
 ###Dependencies
 - Bash 4.x
@@ -41,7 +41,7 @@ to <tt>gvim</tt>. Example: <tt># VIMPROG=gvim pacdiffvim</tt>
 
 * <tt>:OK</tt> - if you have finished the diff between the .pacnew file and the configuration file
   you should invoke this command. This function specifically does:
-  * save the configuration file
+  * saves the configuration file
   * trys to delete the .pacnew file
   * opens your next diff (if any)
 

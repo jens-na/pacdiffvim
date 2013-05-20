@@ -1,8 +1,8 @@
 Overview
 ==========
 <tt>pacdiffvim</tt> is a .pacnew file updater for vim enthusiasts. The shell script locates all .pacnew files
-and opens a tab for each configuration file comparision (diff) in vim. Furthermore the script defines a few 
-vim functions to operate with a .pacnew diff.
+and opens a tab for each diff in Vim. Furthermore the script defines a special
+Vim function to deal with the diff.
 
 ###Audience
 Arch Linux user or user of Linux distributions which uses <tt>pacman</tt> as  the systems package manager.
@@ -34,13 +34,16 @@ If <tt>$VIMPROG</tt> is specified, the script uses this value to start vim. The 
 to <tt>gvim</tt>. Example: <tt># VIMPROG=gvim pacdiffvim</tt>
 
 ###Runtime
-<tt>pacdiffvim</tt> starts vim with a few vim commands to deal with the .pacnew diff. 
+<tt>pacdiffvim</tt> starts Vim with the special Vim command <tt>:OK</tt> to deal with the .pacnew diff.
 
-* <tt>:PacNextDiff</tt>    - the command opens the next available .pacnew diff (if there is any)
-* <tt>:PacOK</tt>          - if you have finished the diff between the .pacnew file and the configuration file
-                             you should invoke this command. It will delete the corresponding .pacnew file and
-                             closes the current diff. This command uses <tt>rm -f /etc/x.pacnew</tt> to delete the file.
-* <tt>:PacExit</tt>        - closes all the vim buffers and vim itsself without saving, deleting, modifying anything.
+* <tt>:OK</tt> - if you have finished the diff between the .pacnew file and the configuration file
+  you should invoke this command. This function specifically does:
+  * save the configuration file
+  * trys to delete the .pacnew file
+  * opens your next diff (if any)
+
+You can navigate between the diffs with standard Vim functions <tt>:tabn</tt> (next tab) 
+or <tt>:tabp</tt> (previous tab)
 
 License and Copyright
 =======

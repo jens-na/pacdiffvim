@@ -42,7 +42,7 @@ to <tt>gvim</tt>. Example: <tt># VIMPROG=gvim pacdiffvim</tt>
 * <tt>:OK</tt> - if you have finished the diff between the .pacnew file and the configuration file
   you should invoke this command. This function specifically does:
   * saves the configuration file
-  * trys to delete the .pacnew file
+  * tries to delete the .pacnew file
   * opens your next diff (if any)
 
 You can navigate between the diffs with standard Vim functions <tt>:tabn</tt> (next tab) 

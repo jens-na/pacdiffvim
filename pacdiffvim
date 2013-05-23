@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# pacdiffvim, a pacnew file updater for vim enthsiasts.
+# pacdiffvim, a pacnew/pacorig/pacsave file updater for vim enthsiasts.
 # 
 # Copyright (C) 2013, Jens Nazarenus <jems@0x6a.de>
 #
@@ -38,7 +38,7 @@ get_files() {
 # prints usage info for this shell script
 usage() {
 	echo -e  "Usage: $myname [OPTION]"
-	echo -en "A pacnew file updater for vim enthusiasts.\n\n"
+	echo -en "A pacnew/pacorig/pacsave file updater for vim enthusiasts.\n\n"
 	echo -e  "  -r, --root <path>       Sets an alternative path where to search for .pacnew files"
 	echo -en "  -V, --version           Show version info of $myname\n\n"
 	echo -e  "  -h, --help              Show this help file"

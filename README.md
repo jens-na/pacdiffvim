@@ -1,7 +1,7 @@
 Overview
 ==========
-**pacdiffvim** is a .pacnew file updater for vim enthusiasts. The shell script locates all .pacnew files
-and opens a tab for each diff in Vim. Furthermore the script defines a special
+**pacdiffvim** is a pacnew/pacorig/pacsave file updater for vim enthusiasts. The shell script locates all 
+.pacnew, .pacorig, .pacsave files and opens a tab for each diff in Vim. Furthermore the script defines a special
 Vim function to deal with the diff.
 
 ###Audience
@@ -22,11 +22,11 @@ Users of Linux distributions which uses [pacman](https://wiki.archlinux.org/inde
 Usage
 ==========
 ###Command line options
-If you start <tt>pacdiffvim</tt> without any parameters, the script tries to locate all .pacnew files with <tt>find</tt>
+If you start <tt>pacdiffvim</tt> without any parameters, the script tries to locate all pacnew/pacorig/pacsave files with <tt>find</tt>
 in the directory <tt>/etc</tt> and starts vim with the found diff candidates. If there is nothing to do the script
 will exit with return code 0.
 
-* <tt>-r, --root</tt>    - You can update .pacnew files in another directory if you specify an alternative root 
+* <tt>-r, --root</tt>    - You can update pacnew/pacorig/pacsave files in another directory if you specify an alternative root 
                            path with <tt>-r</tt> or <tt>--root</tt>. The default directory is <tt>/etc</tt>.
 * <tt>-V, --version</tt> - Shows the version and copyright info for <tt>pacdiffvim</tt>.
 * <tt>-h, --help</tt>    - Shows the help for the script and exits.
@@ -40,9 +40,9 @@ Example:<br/>
 <tt># VIMPROG=gvim pacdiffvim</tt>
 
 ###Runtime
-<tt>pacdiffvim</tt> starts Vim with the special Vim command <tt>:OK</tt> to deal with the .pacnew diff.
+<tt>pacdiffvim</tt> starts Vim with the special Vim command <tt>:OK</tt> to deal with the pacnew/pacorig/pacsave diff.
 
-* <tt>:OK</tt> - if you have finished the diff between the .pacnew file and the configuration file
+* <tt>:OK</tt> - if you have finished the diff between the pacnew/pacorig/pacsave file and the configuration file
   you should invoke this command. This function specifically does:
   * saves the configuration file
   * tries to delete the .pacnew file

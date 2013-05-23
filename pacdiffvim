@@ -24,10 +24,15 @@ declare -r tmpfile='/tmp/pacdiffvim.vim'
 vimprog=${VIMPROG:-vim}
 diffsearchpath=/etc
 
+vim_init=0
+vim_cmd=
+vim_options=
+vim_files=
+
 # returns the .pacnew files with find. The script uses $DIFFSEARCHPATH
 # for the determination of the .pacnew files
 get_files() {
-	find "$diffsearchpath" -writable -iname "*.pacnew" 2>/dev/null | sed 's/\.pacnew//g'
+	find "$diffsearchpath" -writable -regextype posix-extended -regex ".+\.pac(new|save|orig)" -print0 2>/dev/null
 }
 
 # prints usage info for this shell script
@@ -35,8 +40,8 @@ usage() {
 	echo -e  "Usage: $myname [OPTION]"
 	echo -en "A pacnew file updater for vim enthusiasts.\n\n"
 	echo -e  "  -r, --root <path>       Sets an alternative path where to search for .pacnew files"
-	echo -e  "  -h, --help              Show this help file"
 	echo -en "  -V, --version           Show version info of $myname\n\n"
+	echo -e  "  -h, --help              Show this help file"
 	
 	echo -e "Report bugs to: jens@0x6a.de"
 	echo -e "$myname home page: <http://github.com/jens-na/$myname/>"
@@ -70,14 +75,22 @@ let g:loaded_pacdiffvim = 1
 function! OK()
 	wincmd l
 	write
-	let pacnew_file = expand('%:p') . ".pacnew"
-	let success = system("rm -f " . pacnew_file)
+
+	if bufexists(expand('%:p') . ".pacnew") != 0
+		let file=expand('%:p') . ".pacnew"
+	elseif bufexists(expand('%:p') . ".pacorig") != 0
+		let file=expand('%:p') . ".pacorig"
+	elseif bufexists(expand('%:p') . ".pacsave") != 0
+		let file=expand('%:p') . ".pacsave"
+	endif
+	
+	let success = system("rm -v " . file)
 	if success != 0
-		throw "PacNew: Could not delete " . pacnew_file
+		throw "PacNew: Could not delete " . file
 	endif
 
 	" close tab or quit pacdiffvim	
-	try
+	"try
 		tabclose
 	catch /E784:/
 		quitall!	
@@ -117,23 +130,37 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+while IFS= read -u 3 -r -d '' pacfile; do
+	file="${pacfile%.pac*}"
+	file_type="pac${pacfile##*.pac}"
 
-files=$(get_files)
-set -- $files
-let max=${#@}-1
+	if [ ! -f "$file" ]; then
+		echo "$file does not exist. Removing $pacfile..."
+		rm -vi "$pacfile"
+	fi
 
-if [ ${#@} -eq 0 ]; then
+	if cmp -s "$pacfile" "$file"; then
+		echo "$file and $pacfile are identical. Removing $pacfile..."
+		rm -v "$pacfile"
+	else
+		if [ $vim_init -eq 0 ]; then
+			vim_options="$vim_options +\"vert diffsplit  %.$file_type\""
+			vim_init=1
+		else
+			vim_options="$vim_options +\"tabnew\" +\"only\" +\"n\" +\"vert diffsplit %.$file_type\""
+	
+		fi
+		vim_files="$vim_files $file"
+	fi
+
+done 3< <(get_files)
+
+# if there are no files to merge exit with return code 0.
+if [ -z $vim_files ]; then
 	exit 0
 fi
 
-vimcmd="$vimprog -S $tmpfile $files"
-vimcmd="$vimcmd +\"vert diffsplit  %.pacnew\""
+vim_options="$vim_options +\"tabnext\""
+vim_cmd="$vimprog -S $tmpfile $vim_files $vim_options"
 
-for i in $(seq 1 $max)
-do
-	vimcmd="$vimcmd +\"tabnew\" +\"only\" +\"n\" +\"vert diffsplit %.pacnew\""
-done
-
-vimcmd="$vimcmd +\"tabnext\""
-
-eval $vimcmd
+eval $vim_cmd

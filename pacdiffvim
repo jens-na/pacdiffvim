@@ -18,7 +18,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 declare -r myname='pacdiffvim'
-declare -r myversion='1.1.0'
+declare -r myversion='1.2.0'
 declare -r tmpfile='/tmp/pacdiffvim.vim'
 
 vimprog=${VIMPROG:-vim}

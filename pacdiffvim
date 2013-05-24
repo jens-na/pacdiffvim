@@ -29,8 +29,7 @@ vim_cmd=
 vim_options=
 vim_files=
 
-# returns the .pacnew files with find. The script uses $DIFFSEARCHPATH
-# for the determination of the .pacnew files
+# returns the .pacnew, .pacorig, .pacsave files with find.
 get_files() {
 	find "$diffsearchpath" -writable -regextype posix-extended -regex ".+\.pac(new|save|orig)" -print0 2>/dev/null
 }
@@ -40,8 +39,8 @@ usage() {
 	echo -e  "Usage: $myname [OPTION]"
 	echo -en "A pacnew/pacorig/pacsave file updater for vim enthusiasts.\n\n"
 	echo -e  "  -r, --root <path>       Sets an alternative path where to search for .pacnew files"
-	echo -en "  -V, --version           Show version info of $myname\n\n"
-	echo -e  "  -h, --help              Show this help file"
+	echo -en "  -V, --version           Shows version info of $myname\n\n"
+	echo -e  "  -h, --help              Shows this help"
 	
 	echo -e "Report bugs to: jens@0x6a.de"
 	echo -e "$myname home page: <http://github.com/jens-na/$myname/>"
@@ -155,7 +154,7 @@ while IFS= read -u 3 -r -d '' pacfile; do
 
 done 3< <(get_files)
 
-# if there are no files to merge exit with return code 0.
+# if there are no files to merge, exit with return code 0.
 if [ -z $vim_files ]; then
 	exit 0
 fi

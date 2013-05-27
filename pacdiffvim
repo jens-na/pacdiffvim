@@ -39,8 +39,8 @@ usage() {
 	echo -e  "Usage: $myname [OPTION]"
 	echo -en "A pacnew/pacorig/pacsave file updater for vim enthusiasts.\n\n"
 	echo -e  "  -r, --root <path>       Sets an alternative path where to search for .pacnew files"
-	echo -en "  -V, --version           Shows version info of $myname\n\n"
-	echo -e  "  -h, --help              Shows this help"
+	echo -e "  -V, --version           Shows version info of $myname"
+	echo -en "  -h, --help              Shows this help\n\n"
 	
 	echo -e "Report bugs to: jens@0x6a.de"
 	echo -e "$myname home page: <http://github.com/jens-na/$myname/>"

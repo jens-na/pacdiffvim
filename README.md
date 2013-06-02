@@ -45,7 +45,7 @@ Example:<br/>
 * <tt>:OK</tt> - if you have finished the diff between the pacnew/pacorig/pacsave file and the configuration file
   you should invoke this command. This function specifically does:
   * saves the configuration file
-  * tries to delete the .pacnew file
+  * tries to delete the .pacnew/.pacsave/.pacorig file
   * opens your next diff (if any)
 
 You can navigate between the diffs with standard Vim functions <tt>:tabn</tt> (next tab) 

@@ -51,6 +51,22 @@ Example:<br/>
 You can navigate between the diffs with standard Vim functions <tt>:tabn</tt> (next tab) 
 or <tt>:tabp</tt> (previous tab)
 
+Examples
+=======
+
+**Remove** the .pacnew file (ignore):
+
+    :OK                  (diff finished)
+
+**Overwrite** your configuration file with the latest .pacnew file:
+
+    :%diffput            (standard vim command)
+    :OK                  (diff finished)
+    
+**Skip** and go to the next diff:
+
+    :tabn                (next tab - standard vim command)
+
 License and Copyright
 =======
 Licensed under the GNU General Public License 3.

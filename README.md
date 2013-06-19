@@ -16,6 +16,8 @@ Users of Linux distributions which uses [pacman](https://wiki.archlinux.org/inde
 - Put <tt>pacdiffvim</tt> to <tt>/usr/local/bin</tt>
 - <tt>chmod +x /usr/local/bin/pacdiffvim</tt>
 
+AUR Package: https://aur.archlinux.org/packages/pacdiffvim-git/
+
 ###Screenshot
 ![vim-example](images/example-vim.png)
 

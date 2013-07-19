@@ -12,9 +12,11 @@ Users of Linux distributions which uses [pacman](https://wiki.archlinux.org/inde
 - Vim 7.x
 
 ###Installation
-- Download pacdiffvim <tt>wget https://raw.github.com/jens-na/pacdiffvim/master/pacdiffvim</tt>
-- Put <tt>pacdiffvim</tt> to <tt>/usr/local/bin</tt>
-- <tt>chmod +x /usr/local/bin/pacdiffvim</tt>
+You can put <tt>pacdiffvim</tt> to your <tt>$PATH</tt> and make the script executable or you can simply
+copy-paste the following code:
+    
+    wget https://raw.github.com/jens-na/pacdiffvim/master/pacdiffvim -O /usr/local/bin/pacdiffvim; \
+    chmod +x /usr/local/bin/pacdiffvim
 
 AUR Package: https://aur.archlinux.org/packages/pacdiffvim-git/
 

@@ -89,7 +89,7 @@ function! OK()
 	endif
 
 	" close tab or quit pacdiffvim	
-	"try
+	try
 		tabclose
 	catch /E784:/
 		quitall!	
@@ -129,6 +129,8 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+vim_options="+\""
+
 while IFS= read -u 3 -r -d '' pacfile; do
 	file="${pacfile%.pac*}"
 	file_type="pac${pacfile##*.pac}"
@@ -143,10 +145,10 @@ while IFS= read -u 3 -r -d '' pacfile; do
 		rm -v "$pacfile"
 	else
 		if [ $vim_init -eq 0 ]; then
-			vim_options="$vim_options +\"vert diffsplit  %.$file_type\""
+			vim_options="$vim_options vert diffsplit %.$file_type"
 			vim_init=1
 		else
-			vim_options="$vim_options +\"tabnew\" +\"only\" +\"n\" +\"vert diffsplit %.$file_type\""
+			vim_options="$vim_options | silent tabnew | silent only | silent n | silent vert diffsplit %.$file_type"
 	
 		fi
 		vim_files="$vim_files $file"
@@ -155,11 +157,11 @@ while IFS= read -u 3 -r -d '' pacfile; do
 done 3< <(get_files)
 
 # if there are no files to merge, exit with return code 0.
-if [ -z $vim_files ]; then
+if [ -z "$vim_files" ]; then
 	exit 0
 fi
 
-vim_options="$vim_options +\"tabnext\""
+vim_options="$vim_options | silent tabnext\""
 vim_cmd="$vimprog -S $tmpfile $vim_files $vim_options"
 
 eval $vim_cmd

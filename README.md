@@ -21,7 +21,7 @@ copy-paste the following code:
 AUR Package: https://aur.archlinux.org/packages/pacdiffvim-git/
 
 ###Screenshot
-![vim-example](images/example-vim.png)
+![pacdiffvim][1]
 
 Usage
 ==========
@@ -76,3 +76,5 @@ License and Copyright
 Licensed under the GNU General Public License 3.
 
 (C) Jens Nazarenus, 2013
+
+[1]: http://i.imgur.com/ODSCGoC.png

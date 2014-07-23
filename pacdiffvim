@@ -18,7 +18,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 declare -r myname='pacdiffvim'
-declare -r myversion='1.2.0'
+declare -r myversion='1.3.0'
 declare -r tmpfile='/tmp/pacdiffvim.vim'
 
 vimprog=${VIMPROG:-vim}
@@ -39,6 +39,7 @@ usage() {
 	echo -e  "Usage: $myname [OPTION]"
 	echo -en "A pacnew/pacorig/pacsave file updater for vim enthusiasts.\n\n"
 	echo -e  "  -r, --root <path>       Sets an alternative path where to search for .pacnew files"
+  echo -e  "  -c, --count             Counts the available .pacnew, .pacsave, .pacorig files "
 	echo -e "  -V, --version           Shows version info of $myname"
 	echo -en "  -h, --help              Shows this help\n\n"
 	
@@ -108,6 +109,9 @@ if [ $# -gt 0 ]; then
 		-h|--help)
 			usage
 			exit 0;;
+    -c|--count)
+      echo "$(get_files | tr '\0' ' ' | wc -w)"
+      exit 0;;
 		-r|--root)
 			if [ -z $2 ]; then
 				echo "Parameter -r (--root) requires an argument."
@@ -125,7 +129,7 @@ fi
 which "$vimprog" >/dev/null 2>&1
 
 if [ $? -ne 0 ]; then
-        echo "Could not find $vimprog in PATH."
+  echo "Could not find $vimprog in PATH."
 	exit 1
 fi
 
